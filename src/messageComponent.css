@@ -3,6 +3,14 @@
     width: 50%;
     background-color: bisque;
     position: relative;
+   
+}
+
+.messages{
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 70vh;
+    color: black;
 }
 
 .messageGrid{
