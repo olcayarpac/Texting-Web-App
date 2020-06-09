@@ -1,0 +1,16 @@
+.messageComponent {
+    height: 80vh;
+    width: 50%;
+    background-color: bisque;
+    position: relative;
+}
+
+.messageGrid{
+    position: absolute;
+    bottom: 5px;
+    width: 80%;
+}
+
+.messageInput{
+    width: 95%;
+}
