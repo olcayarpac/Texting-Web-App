@@ -1,16 +1,35 @@
 .messageComponent {
     height: 80vh;
     width: 50%;
-    background-color: bisque;
+    background-color: whitesmoke;
     position: relative;
    
 }
 
 .messages{
     overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: 70vh;
     color: black;
+}
+
+.userMessage{
+    float: right;
+    clear: both;;
+    background-color: yellowgreen;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.friendMessage{
+    float: left;
+    clear: both;
+    background-color: yellowgreen;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 5px;
 }
 
 .messageGrid{
