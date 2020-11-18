@@ -1,0 +1,6 @@
+{
+    "messages": [
+        {"sender": "deneme1", "text": "hello"},
+        {"sender": "deneme2", "text": "hello you too"}
+    ]
+}

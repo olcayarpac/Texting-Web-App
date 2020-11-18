@@ -9,53 +9,62 @@ class messageComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [
-                { sender: 1, text: "hello" },
-                { sender: 2, text: "hello you" },
-                { sender: 1, text: "how are you" },
-                { sender: 2, text: "im fine" }
-            ],
+            userName: this.props.userName,
+            messages: [],
             newMsg: ""
         };
 
+
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
+        this.getMessagesFromServer = this.getMessagesFromServer.bind(this);
+        this.getMessagesFromServer()
     }
 
-    handleMessageChange(event){
-        this.setState({newMsg: event.target.value});
+    getMessagesFromServer() {
+        var getMessageRequest = new XMLHttpRequest();
+        getMessageRequest.addEventListener('load', () => {
+            
+        })
+
+        getMessageRequest.open('GET', 'http://localhost:5000/getmessages');
+        console.log("get");
     }
 
-    sendMessage(event){
+    handleMessageChange(event) {
+        this.setState({ newMsg: event.target.value })
+    }
+
+    sendMessage(event) {
+        console.log('send')
         event.preventDefault();
-        if(this.state.newMsg === "") return false;
-        var newMessageObject = { sender: 1, text : this.state.newMsg};
-        this.setState(state=>{
+        if (this.state.newMsg === "") return false;
+        var newMessageObject = { sender: 1, message: this.state.newMsg };
+        this.setState(state => {
             state.messages.push(newMessageObject);
-        })   
-        this.setState({newMsg: ""});
+        })
+        this.setState({ newMsg: "" });
         document.getElementById('input-with-icon-grid').value = '';
+        this.getMessagesFromServer();
     }
 
-    clearInput(event){
-
-    }
-
+    // send message and clear the input area
     render() {
         return <div className="messageComponent">
+
             <div className="messages">
-                {this.state.messages.map((msg) => <div className={msg.sender === 1 ? 'userMessage' : 'friendMessage'}>{msg.text}</div>)}
+                {this.state.messages.map((msg) => <div className={msg.sender === 1 ? 'userMessage' : 'friendMessage'}>{msg.message}</div>)}
             </div>
-             <form type="submit" onSubmit={this.sendMessage}>
+            <form type="submit" onSubmit={this.sendMessage}>
                 <Grid container className="messageGrid" alignItems="flex-end" justify="flex-start">
-                    <Grid Item xs={11}>
-                        <TextField  onChange= {this.handleMessageChange} className="messageInput" id="input-with-icon-grid" label="Message" color="secondary" />
+                    <Grid item xs={11}>
+                        <TextField onChange={this.handleMessageChange} className="messageInput" id="input-with-icon-grid" label="Message" color="secondary" />
                     </Grid>
-                    <Grid Item xs={1}><SendIcon color="secondary" /></Grid>
+                    <Grid item xs={1}><SendIcon color="secondary" /></Grid>
                 </Grid>
             </form>
 
-           
+
         </div >
     }
 }
