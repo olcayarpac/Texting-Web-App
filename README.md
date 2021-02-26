@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web application for texting. Login and start texting
 
 ## Available Scripts
 
