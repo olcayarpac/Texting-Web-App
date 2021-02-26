@@ -1,25 +1,52 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+
+
 
 class Login extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.login = this.login.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    login(event) {
+
+    handleSubmit(event) {
         event.preventDefault();
-        var userName = document.getElementById('outlined-basic-username').value;
-        this.props.doLogin(userName);
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        this.props.doLogin(username, password);
     }
 
     render() {
         return (
-            <div className="Login">
-                <form type="submit" onSubmit={this.login} className="loginForm" noValidate autoComplete="off">
-                    <TextField id="outlined-basic-username" label="Username" variant="outlined" color="secondary" />
+            <Container maxWidth="xs">
+                <form onSubmit={this.handleSubmit}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Box component="div" display="inline" color="primary">{this.props.tryStatus}</Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField label="Username" id="username" variant="outlined" autoComplete="off" />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField label="Password" id="password" type="password" variant="outlined" autoComplete="off" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button color="secondary" type="submit" variant="outlined">
+                                Log in
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </form>
-            </div>
+            </Container>
         );
     }
 
